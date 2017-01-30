@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Projector</title>
+	<style>
+		body{
+			padding:0;
+			background-color: black;
+		}
+		.main{
+			position:absolute;
+			top:1%;
+			left:1%;
+			color: white;
+			width: 98%;
+			height: 98%;
+			text-align: center;
+			font-family: sans-serif;
+			font-weight: bold;
+		}
+	</style>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class='main''>
+    <span>My Text Here</span>
+    <script type="text/javascript">
+    	;(function($) {
+    		$.fn.textfill = function(options) {
+    			var fontSize = options.maxFontPixels;
+    			var ourText = $('span:visible:first', this);
+    			var maxHeight = $(this).height();
+    			var maxWidth = $(this).width();
+    			var textHeight;
+    			var textWidth;
+    			do {
+    				ourText.css('font-size', fontSize);
+    				textHeight = ourText.height();
+    				textWidth = ourText.width();
+    				fontSize = fontSize - 1;
+    			} while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > 3);
+    			return this;
+    		}
+    	})(jQuery);
+
+    	$(document).ready(function() {
+    		$('.main').textfill({ maxFontPixels: 500 });
+    	});
+    	$(window).resize(function(){
+    		$('.main').textfill({ maxFontPixels: 500 });
+    	})
+    </script>
+</div>
+</body>
+</html>
