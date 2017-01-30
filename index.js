@@ -1,10 +1,13 @@
-var sockets = require('socket.io');
-var express = require('express');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-var app = express();
+server.listen(3000);
 
-
-app.get('/', function(req, res){
-  res.send('hello world');
+app.get('/', function(req, res) {
+  res.sendfile(__dirname + "/public/projector.html");
 });
-app.listen(3000);
+
+io.on('connection', function(socket){
+  socket.emit('news', {hello:'world'});
+});
