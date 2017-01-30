@@ -1,0 +1,25 @@
+{
+  "name": "projector-dissent",
+  "version": "0.0.1",
+  "description": "raspberry pi utility to display messages full screen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/tommilburn/projector-dissent.git"
+  },
+  "keywords": [
+    "cheeto",
+    "benito"
+  ],
+  "author": "tom milburn",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "nodemon": "^1.11.0",
+    "socketio": "^1.0.0"
+  }
+}
