@@ -19,6 +19,9 @@
 			font-family: sans-serif;
 			font-weight: bold;
 		}
+		.hiddentext{
+			color: black;
+		}
 	</style>
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -27,8 +30,9 @@
         <script src='/socket.io/socket.io.js'></script>
 </head>
 <body>
-	<div class='main''>
-        <span>My Text Here</span>
+	<div class='main'>
+		<span class="message hiddentext">My Text Here</span>
+	</div>
         <script type="text/javascript">
            ;(function($) {
               $.fn.textfill = function(options) {
@@ -56,9 +60,10 @@
         $(window).resize(resizeMain);
 
         var socket = io();
-        socket.on('newtext', function (data) {
+        socket.on('newmessage', function (data) {
             console.log(data);      
-            $('.main span').text(data.message);
+	    $('.message').text(data);
+	    $('.message').removeClass('hiddentext');
             resizeMain();
         });
     </script>

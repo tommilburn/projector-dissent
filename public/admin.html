@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin</title>
+	<style>
+		body{
+			padding:0;
+			
+		}
+		input, button {
+			width: 100%;
+			float: left;
+			height: 3em;
+			font-size: 2em;
+		}
+	</style>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+        <script src='/socket.io/socket.io.js'></script>
+</head>
+<body>
+	<div class='main'>
+		<form>
+			<input class="newmessagetext" type="text">
+			<button name="button" class="submit">Update</button>
+		</form>
+	</div>
+	<script type="text/javascript">
+        var socket = io();
+	$('.submit').click(function() {
+	  console.log('submit pressed');
+	  socket.emit('setmessage', $('.newmessagetext').val());
+	  $('.newmessagetext').val('');
+	});
+        socket.on('newtext', function (data) {
+            console.log(data);      
+            $('.main span').text(data.message);
+            resizeMain();
+        });
+    </script>
+</div>
+</body>
+</html>
