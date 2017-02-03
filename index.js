@@ -1,10 +1,15 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var express = require('express');
+var http = require('http');
+var socketio = require('socket.io');
+
+var app = express();
+var server = http.Server(app);
+var io = socketio(server);
 
 var message = '.';
 
-server.listen(3000);
+
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + "/public/projector.html");
@@ -21,4 +26,4 @@ io.on('connection', function(socket){
     socket.broadcast.emit('newmessage', message);
   });
 });
-
+server.listen(3000);
